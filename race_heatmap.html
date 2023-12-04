@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-b5e160c3eff49c2cd763f8829310f99a"}, "mark": "rect", "encoding": {"color": {"field": "proportion", "type": "quantitative"}, "tooltip": [{"field": "proportion", "title": "Proportion", "type": "quantitative"}, {"field": "readmitted", "title": "Readmitted?", "type": "ordinal"}, {"aggregate": "average", "field": "count", "title": "Number of Individuals", "type": "quantitative"}], "x": {"field": "readmitted", "title": "Readmitted?", "type": "ordinal"}, "y": {"field": "race", "title": "Race", "type": "nominal"}}, "height": 300, "title": "Readmission Status Distribution by Race", "width": 450, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-b5e160c3eff49c2cd763f8829310f99a": [{"race": "?", "readmitted": "<30", "count": 3353, "proportion": 0.07417649271066079}, {"race": "?", "readmitted": ">30", "count": 10579, "proportion": 0.2340331393934031}, {"race": "?", "readmitted": "NO", "count": 31271, "proportion": 0.6917903678959361}, {"race": "AfricanAmerican", "readmitted": "<30", "count": 46032, "proportion": 0.11519288903125062}, {"race": "AfricanAmerican", "readmitted": ">30", "count": 138569, "proportion": 0.34676232708053895}, {"race": "AfricanAmerican", "readmitted": "NO", "count": 215007, "proportion": 0.5380447838882104}, {"race": "Asian", "readmitted": "<30", "count": 1591, "proportion": 0.12725963845784674}, {"race": "Asian", "readmitted": ">30", "count": 3218, "proportion": 0.2573988161894097}, {"race": "Asian", "readmitted": "NO", "count": 7693, "proportion": 0.6153415453527435}, {"race": "Caucasian", "readmitted": "<30", "count": 169802, "proportion": 0.11357226033558937}, {"race": "Caucasian", "readmitted": ">30", "count": 531199, "proportion": 0.3552930537803132}, {"race": "Caucasian", "readmitted": "NO", "count": 794100, "proportion": 0.5311346858840975}, {"race": "Hispanic", "readmitted": "<30", "count": 4058, "proportion": 0.09806669888835186}, {"race": "Hispanic", "readmitted": ">30", "count": 13269, "proportion": 0.32066215563073946}, {"race": "Hispanic", "readmitted": "NO", "count": 24053, "proportion": 0.5812711454809086}, {"race": "Other", "readmitted": "<30", "count": 3544, "proportion": 0.11091290332676118}, {"race": "Other", "readmitted": ">30", "count": 9725, "proportion": 0.3043532688636435}, {"race": "Other", "readmitted": "NO", "count": 18684, "proportion": 0.5847338278095954}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
