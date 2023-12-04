@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "data-caa0a5cc0b864900bf2d920ee6b808cd"}, {"name": "data_0", "values": [{"count": 6152, "gender": "Female", "proportion": 0.11245156101484244, "proportion_end": 0.11245156101484244, "proportion_start": 0.0, "readmitted": "<30"}, {"count": 19518, "gender": "Female", "proportion": 0.35676683483220006, "proportion_end": 0.4692183958470425, "proportion_start": 0.11245156101484244, "readmitted": ">30"}, {"count": 29038, "gender": "Female", "proportion": 0.5307816041529575, "proportion_end": 1.0, "proportion_start": 0.4692183958470425, "readmitted": "NO"}, {"count": 5205, "gender": "Male", "proportion": 0.1106152374880459, "proportion_end": 0.1106152374880459, "proportion_start": 0.0, "readmitted": "<30"}, {"count": 16027, "gender": "Male", "proportion": 0.3406014238656891, "proportion_end": 0.451216661353735, "proportion_start": 0.11061523748804591, "readmitted": ">30"}, {"count": 25823, "gender": "Male", "proportion": 0.548783338646265, "proportion_end": 1.0, "proportion_start": 0.45121666135373495, "readmitted": "NO"}, {"count": 3, "gender": "Unknown/Invalid", "proportion": 1.0, "proportion_end": 1.0, "proportion_start": 0.0, "readmitted": "NO"}]}, {"name": "data_0_y_domain_gender", "values": [{"gender": "Female"}, {"gender": "Male"}, {"gender": "Unknown/Invalid"}]}, {"name": "data_0_color_domain_readmitted", "values": [{"readmitted": "<30"}, {"readmitted": ">30"}, {"readmitted": "NO"}]}], "signals": [{"name": "y_step", "value": 20}, {"name": "height", "update": "bandspace(domain('y').length, 0.1, 0.05) * y_step"}], "marks": [{"type": "rect", "name": "marks", "from": {"data": "data_0"}, "encode": {"update": {"description": {"signal": "\"Proportion: \" + (format(datum[\"proportion\"], \"\")) + \"; Gender: \" + (isValid(datum[\"gender\"]) ? datum[\"gender\"] : \"\"+datum[\"gender\"]) + \"; readmitted: \" + (isValid(datum[\"readmitted\"]) ? datum[\"readmitted\"] : \"\"+datum[\"readmitted\"]) + \"; race: \" + (isValid(datum[\"race\"]) ? datum[\"race\"] : \"\"+datum[\"race\"]) + \"; count: \" + (format(datum[\"count\"], \"\"))"}, "tooltip": {"signal": "{\"race\": isValid(datum[\"race\"]) ? datum[\"race\"] : \"\"+datum[\"race\"], \"readmitted\": isValid(datum[\"readmitted\"]) ? datum[\"readmitted\"] : \"\"+datum[\"readmitted\"], \"count\": format(datum[\"count\"], \"\")}"}, "ariaRoleDescription": {"value": "bar"}, "x": {"field": "proportion_end", "scale": "x"}, "fill": {"field": "readmitted", "scale": "color"}, "height": {"signal": "max(0.25, bandwidth('y'))"}, "x2": {"field": "proportion_start", "scale": "x"}, "y": {"field": "gender", "scale": "y"}}}, "style": ["bar"]}], "scales": [{"name": "x", "type": "linear", "domain": {"data": "data_0", "fields": ["proportion_start", "proportion_end"]}, "range": [0, {"signal": "width"}], "nice": true, "zero": true}, {"name": "y", "type": "band", "domain": {"data": "data_0_y_domain_gender", "field": "gender", "sort": true}, "range": {"step": {"signal": "y_step"}}, "paddingInner": 0.1, "paddingOuter": 0.05}, {"name": "color", "type": "ordinal", "domain": {"data": "data_0_color_domain_readmitted", "field": "readmitted", "sort": true}, "range": "category"}], "axes": [{"scale": "x", "orient": "bottom", "gridScale": "y", "tickCount": {"signal": "ceil(width/40)"}, "maxExtent": 0, "minExtent": 0, "zindex": 0, "labels": false, "grid": true, "aria": false, "ticks": false, "domain": false}, {"scale": "x", "zindex": 0, "grid": false, "orient": "bottom", "title": "Proportion", "labelOverlap": true, "labelFlush": true, "tickCount": {"signal": "ceil(width/40)"}}, {"scale": "y", "grid": false, "orient": "left", "title": "Gender", "zindex": 0}], "title": {"text": "Proportional Distribution of Each Gender by Readmission Status", "frame": "group"}, "style": "cell", "width": 300, "background": "white", "legends": [{"fill": "color", "symbolType": "square", "title": "readmitted"}], "padding": 5};
+      var embedOpt = {"mode": "vega"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
